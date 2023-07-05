@@ -14,6 +14,7 @@ public:
     
     void    quit();
     void    printFormattedString(std::string s);
+    void    printContacts();
     void    printContact(int index);
     void    search();
     void    add();

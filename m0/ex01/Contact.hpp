@@ -12,10 +12,14 @@ public:
     std::string    getFirstName();
     std::string    getLastName();
     std::string    getNickName();
+    std::string    getPhoneNumber();
+    std::string    getSecret();
 
     void    setFirstName(std::string s);
     void    setLastName(std::string s);
     void    setNickName(std::string s);
+    void    setPhoneNUmber(std::string s);
+    void    setSecret(std::string s);
 
 private:
     std::string    _firstname;
