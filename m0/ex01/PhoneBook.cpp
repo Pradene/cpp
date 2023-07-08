@@ -53,13 +53,15 @@ void    PhoneBook::printFormattedString(std::string s)
 void    PhoneBook::printContact(int index)
 {
     if (_contactNumber == 0 || index >= _contactNumber || index < 0)
+    {
+        std::cout << "Please enter a valid index" << std::endl;
         return ;
+    }
     std::cout << _contact[index].getFirstName() << std::endl;
     std::cout << _contact[index].getLastName() << std::endl;
     std::cout << _contact[index].getNickName() << std::endl;
     std::cout << _contact[index].getPhoneNumber() << std::endl;
     std::cout << _contact[index].getSecret() << std::endl;
-    
 }
 
 void    PhoneBook::printContacts()

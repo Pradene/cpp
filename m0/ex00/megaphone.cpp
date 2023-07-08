@@ -21,9 +21,9 @@ int main(int argc, char **argv)
     else
     {
         i = 0;
-        while (++i < argc - 1)
+        while (++i < argc)
             std::cout << toUpperCase(argv[i]);
-        std::cout << toUpperCase(argv[i]) << std::endl;
+        std::cout << std::endl;
     }
     return (0);
 }
