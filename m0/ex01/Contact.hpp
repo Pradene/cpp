@@ -6,8 +6,8 @@
 class Contact
 {
 public:
-    Contact() {};
-    ~Contact() {};
+    Contact();
+    ~Contact();
 
     std::string    getFirstName();
     std::string    getLastName();

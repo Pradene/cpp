@@ -9,8 +9,8 @@
 class PhoneBook
 {
 public:
-    PhoneBook() {};
-    ~PhoneBook() {};
+    PhoneBook();
+    ~PhoneBook();
     
     void    quit();
     void    printFormattedString(std::string s);
