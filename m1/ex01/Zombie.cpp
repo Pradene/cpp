@@ -2,6 +2,7 @@
 
 Zombie::Zombie()
 {
+    _name = nullptr;
     std::cout << "A Zombie came out of the ground" << std::endl;
 }
 
