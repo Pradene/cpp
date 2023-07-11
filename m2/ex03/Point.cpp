@@ -52,9 +52,9 @@ float   Point::getY()
 
 
 // BSP
-float sign(Point p1, Point p2, Point p3)
+float sign(Point a, Point b, Point c)
 {
-    return (p1.getX() - p3.getX()) * (p2.getY() - p3.getY()) - (p2.getX() - p3.getX()) * (p1.getY() - p3.getY());
+    return (a.getX() - c.getX()) * (b.getY() - c.getY()) - (b.getX() - c.getX()) * (a.getY() - c.getY());
 }
 
 bool    bsp(Point const a, Point const b, Point const c, Point const point)
