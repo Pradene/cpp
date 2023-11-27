@@ -21,12 +21,9 @@ int sed(std::string filename, std::string s1, std::string s2)
         return (1);
     }
 
-    while (input.is_open())
-    {
-        while (std::getline(input, line))
-            output << ((line == s1) ? s2 : line) << std::endl;
-        input.close();
-    }
+    while (std::getline(input, line))
+        output << ((line == s1) ? s2 : line) << std::endl;
+    input.close();
 
     return (0);
 }

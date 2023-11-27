@@ -4,6 +4,7 @@
 
 HumanA::HumanA(std::string name, Weapon &weapon)
 {
+    std::cout << "HumanA constructor called" << std::endl;
     _weapon = &weapon;
     _name = name;
 }

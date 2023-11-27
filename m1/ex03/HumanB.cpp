@@ -4,6 +4,7 @@
 
 HumanB::HumanB(std::string name)
 {
+    std::cout << "HumanB constructor called" << std::endl;
     _name = name;
     _weapon = nullptr;
 }

@@ -1,15 +1,21 @@
 #include "PhoneBook.hpp"
 
+
+
+// CONSTRUCTOR / DESTRUCTOR
 PhoneBook::PhoneBook()
 {
-
+    std::cout << "PhoneBook Default constructor called" << std::endl;
 }
 
 PhoneBook::~PhoneBook()
 {
-
+    std::cout << "PhoneBook Default destructor called" << std::endl;
 }
 
+
+
+// METHODS
 void    PhoneBook::add()
 {
     std::string    s;

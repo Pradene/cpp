@@ -1,16 +1,19 @@
 #include "Contact.hpp"
 
+// CONSTRUCTOR / DESTRUCTOR
 Contact::Contact()
 {
-
+    std::cout << "Contact Default constructor called" << std::endl;
 }
 
 Contact::~Contact()
 {
-
+    std::cout << "Contact Default destructor called" << std::endl;
 }
 
 
+
+// GETTERS
 std::string    Contact::getFirstName()
 {
     return (_firstname);
@@ -36,6 +39,9 @@ std::string    Contact::getSecret()
     return (_secret);
 }
 
+
+
+// SETTERS
 void    Contact::setFirstName(std::string s)
 {
     _firstname = s;

@@ -8,16 +8,9 @@ int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
-void	Account::_displayTimestamp( void )
-{
-    char    buf[16];
 
-    std::time_t time = std::time(nullptr);
-    std::tm     *tm = std::localtime(&time);
-    std::strftime(buf, sizeof(buf), "%G%m%d_%H%m%S", tm);
-    std::cout << "[" << buf << "] ";
-}
 
+// CONSTRUCTOR / DESTRUCTOR
 Account::Account( int initial_deposit )
 {
     _accountIndex = _nbAccounts;
@@ -36,6 +29,9 @@ Account::~Account( void )
     std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";closed" << std::endl;
 }
 
+
+
+// GETTERS
 int	Account::getNbAccounts( void )
 {
     return (_nbAccounts);
@@ -54,6 +50,24 @@ int	Account::getNbDeposits( void )
 int	Account::getNbWithdrawals( void )
 {
     return (_totalNbWithdrawals);
+}
+
+int		Account::checkAmount( void ) const
+{
+    return (_amount);
+}
+
+
+
+// METHODS
+void	Account::_displayTimestamp( void )
+{
+    char    buf[16];
+
+    std::time_t time = std::time(nullptr);
+    std::tm     *tm = std::localtime(&time);
+    std::strftime(buf, sizeof(buf), "%G%m%d_%H%m%S", tm);
+    std::cout << "[" << buf << "] ";
 }
 
 void	Account::displayAccountsInfos( void )
@@ -99,11 +113,6 @@ bool	Account::makeWithdrawal( int withdrawal )
     << ";amount:" << _amount \
     << ";nb_withdrawals:" << _nbWithdrawals << std::endl;
     return (true);
-}
-
-int		Account::checkAmount( void ) const
-{
-    return (_amount);
 }
 
 void	Account::displayStatus( void ) const
