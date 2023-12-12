@@ -1,18 +1,18 @@
 #ifndef DOG
-#define DOG
+# define DOG
 
-#include "Animal.hpp"
+# include "Animal.hpp"
 
 class Dog : public Animal
 {
 public:
     Dog();
     Dog(const Dog &d);
-    ~Dog();
+    virtual ~Dog();
 
-    Dog &operator=(const Dog &a);
+    Dog &operator=(const Dog &d);
 
-    void    makeSound() const;
+    virtual void    makeSound() const;
 };
 
 #endif

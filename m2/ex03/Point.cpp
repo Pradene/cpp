@@ -31,20 +31,20 @@ Point::~Point()
 // OPERATORS
 Point   &Point::operator=(const Point &p)
 {
-    _x = p._x;
-    _y = p._y;
+    _x = p.getX();
+    _y = p.getY();
     return (*this);
 }
 
 
 
 // MEMBER FUNCTIONS
-float   Point::getX()
+float   Point::getX() const
 {
     return (_x.toFloat());
 }
 
-float   Point::getY()
+float   Point::getY() const
 {
     return (_y.toFloat());
 }
@@ -52,22 +52,16 @@ float   Point::getY()
 
 
 // BSP
-float sign(Point a, Point b, Point c)
+
+bool    bsp(Point a, Point b, Point c, Point p)
 {
-    return (a.getX() - c.getX()) * (b.getY() - c.getY()) - (b.getX() - c.getX()) * (a.getY() - c.getY());
-}
+    float denominator = (b.getY() - c.getY()) * (a.getX() - c.getX()) + (c.getX() - b.getX()) * (a.getY() - c.getY());
 
-bool    bsp(Point const a, Point const b, Point const c, Point const point)
-{
-    float   d1, d2, d3;
-    bool    has_neg, has_pos;
+    float alpha = ((b.getY() - c.getY()) * (p.getX() - c.getX()) + (c.getX() - b.getX()) * (p.getY() - c.getY())) / denominator;
+    float beta = ((c.getY() - a.getY()) * (p.getX() - c.getX()) + (a.getX() - c.getX()) * (p.getY() - c.getY())) / denominator;
+    float gamma = 1.0f - alpha - beta;
 
-    d1 = sign(point, a, b);
-    d2 = sign(point, b, c);
-    d3 = sign(point, c, a);
-
-    has_neg = (d1 < 0) || (d2 < 0) || (d3 < 0);
-    has_pos = (d1 > 0) || (d2 > 0) || (d3 > 0);
-
-    return !(has_neg && has_pos);
+    // Check if the point is inside the triangle and not on any vertex
+    return alpha > 0 && beta > 0 && gamma > 0 &&
+           alpha < 1 && beta < 1 && gamma < 1;
 }

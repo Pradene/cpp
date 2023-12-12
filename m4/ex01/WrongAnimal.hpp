@@ -1,8 +1,10 @@
 #ifndef WRONGANIMAL
-#define WRONGANIMAL
+# define WRONGANIMAL
 
-#include <string>
-#include <iostream>
+# include "Animal.hpp"
+
+# include <string>
+# include <iostream>
 
 class WrongAnimal
 {
@@ -13,8 +15,8 @@ public:
 
     WrongAnimal  &operator=(const WrongAnimal &a);
 
-    virtual void    makeSound() const;
-    std::string     getType() const;
+    void                makeSound() const;
+    const std::string   &getType() const;
 
 protected:
     std::string _type;

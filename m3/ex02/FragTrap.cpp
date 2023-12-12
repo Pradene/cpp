@@ -2,7 +2,8 @@
 
 FragTrap::FragTrap()
 {
-    std::cout << "FragTrap Default Constructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "FragTrap Default Constructor called" << std::endl;
     _name = "John";
     _hp = 100;
     _energy = 100;
@@ -11,7 +12,8 @@ FragTrap::FragTrap()
 
 FragTrap::FragTrap(std::string name)
 {
-    std::cout << "FragTrap Assignmemt Constructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "FragTrap Assignmemt Constructor called" << std::endl;
     _name = name;
     _hp = 100;
     _energy = 100;
@@ -20,7 +22,8 @@ FragTrap::FragTrap(std::string name)
 
 FragTrap::FragTrap(const FragTrap &s)
 {
-    std::cout << "FragTrap Copy Constructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "FragTrap Copy Constructor called" << std::endl;
     *this = s;
 }
 
@@ -28,7 +31,8 @@ FragTrap::FragTrap(const FragTrap &s)
 
 FragTrap::~FragTrap()
 {
-    std::cout << "FragTrap Destructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "FragTrap Destructor of " << _name << " called" << std::endl;
 }
 
 
@@ -37,8 +41,7 @@ void    FragTrap::highFivesGuys()
 {
     if (!this->canDoAction())
     {
-        std::cout << "FragTrap " << _name \
-        << " couldn't make this action" << std::endl;
+        this->couldntMakeAction();
         return ;
     }
 

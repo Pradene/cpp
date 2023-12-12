@@ -1,20 +1,22 @@
 #ifndef ANIMAL
-#define ANIMAL
+# define ANIMAL
 
-#include <string>
-#include <iostream>
+# define DEBUG 1
+
+# include <string>
+# include <iostream>
 
 class Animal
 {
 public:
     Animal();
     Animal(const Animal &a);
-    ~Animal();
+    virtual ~Animal();
 
     Animal  &operator=(const Animal &a);
 
-    virtual void    makeSound() const;
-    std::string     getType() const;
+    virtual void        makeSound() const;
+    const std::string   &getType() const;
 
 protected:
     std::string _type;

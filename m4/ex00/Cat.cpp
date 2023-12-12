@@ -2,24 +2,27 @@
 
 Cat::Cat()
 {
+    if (DEBUG)
+        std::cout << "Default Cat constructor called" << std::endl;
     _type = "Cat";
-    std::cout << "Default Cat constructor called" << std::endl;
 }
 
 Cat::Cat(const Cat &c)
 {
-    *this = c;
-    std::cout << "Copy Cat constructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "Copy Cat constructor called" << std::endl;
+    _type = c._type;
 }
 
 Cat::~Cat()
 {
-    std::cout << "Cat destructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "Cat destructor called" << std::endl;
 }
 
-Cat &Cat::operator=(const Cat &a)
+Cat &Cat::operator=(const Cat &c)
 {
-    _type = a._type;
+    _type = c._type;
     return (*this);
 }
 

@@ -2,19 +2,22 @@
 
 WrongAnimal::WrongAnimal()
 {
+    if (DEBUG)
+        std::cout << "Default WrongAnimal constructor called" << std::endl;
     _type = "Bernard";
-    std::cout << "Default WrongAnimal constructor called" << std::endl;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal &a)
 {
-    *this = a;
-    std::cout << "Copy WrongAnimal constructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "Copy WrongAnimal constructor called" << std::endl;
+    _type = a._type;
 }
 
 WrongAnimal::~WrongAnimal()
 {
-    std::cout << "WrongAnimal destructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "WrongAnimal destructor called" << std::endl;
 }
 
 WrongAnimal  &WrongAnimal::operator=(const WrongAnimal &a)
@@ -28,7 +31,7 @@ void    WrongAnimal::makeSound() const
     std::cout << "A weird sound..." << std::endl;
 }
 
-std::string WrongAnimal::getType() const
+const std::string   &WrongAnimal::getType() const
 {
     return (_type);
 }

@@ -1,22 +1,23 @@
 #ifndef CAT
-#define CAT
+# define CAT
 
-#include "Animal.hpp"
-#include "Brain.hpp"
+# include "Animal.hpp"
+# include "Brain.hpp"
 
 class Cat : public Animal
 {
 public:
     Cat();
     Cat(const Cat &c);
-    ~Cat();
+    virtual ~Cat();
 
     Cat &operator=(const Cat &c);
 
-    void    makeSound() const;
+    virtual void    makeSound() const;
 
 private:
     Brain   *_brain;
+
 };
 
 #endif

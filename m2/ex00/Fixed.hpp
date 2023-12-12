@@ -1,21 +1,23 @@
 #ifndef FIXED
-#define FIXED
+# define FIXED
 
-#include <iostream>
+# define DEBUG 1
+
+# include <iostream>
 
 class Fixed
 {
 public:
     Fixed();
-    Fixed(Fixed &f);
+    Fixed(const Fixed &f);
     ~Fixed();
-    Fixed   &operator=(Fixed &f);
+    Fixed   &operator=(const Fixed &f);
 
-    int     getRawBits();
-    void    setRawBits(int const raw);
+    int     getRawBits() const;
+    void    setRawBits(const int raw);
 private:
     int                 _rawBits;
-    static int const    _bits = 8;
+    const static int    _bits = 8;
 };
 
 #endif

@@ -2,24 +2,27 @@
 
 Dog::Dog()
 {
+    if (DEBUG)
+        std::cout << "Default Dog constructor called" << std::endl;
     _type = "Dog";
-    std::cout << "Default Dog constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog &c)
+Dog::Dog(const Dog &d)
 {
-    *this = c;
-    std::cout << "Copy Dog constructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "Copy Dog constructor called" << std::endl;
+    _type = d._type;
 }
 
 Dog::~Dog()
 {
-    std::cout << "Dog destructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "Dog destructor called" << std::endl;
 }
 
-Dog  &Dog::operator=(const Dog &a)
+Dog  &Dog::operator=(const Dog &d)
 {
-    _type = a._type;
+    _type = d._type;
     return (*this);
 }
 

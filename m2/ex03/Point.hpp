@@ -13,8 +13,8 @@ public:
 
     Point   &operator=(const Point &p);
 
-    float   getX();
-    float   getY();
+    float   getX() const;
+    float   getY() const;
 
 private:
     Fixed   _x;

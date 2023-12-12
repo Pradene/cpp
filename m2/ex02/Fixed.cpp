@@ -34,7 +34,7 @@ Fixed::~Fixed()
 // OPERATORS
 Fixed   &Fixed::operator=(const Fixed &f)
 {
-    _rawBits = f._rawBits;
+    _rawBits = f.getRawBits();
     return (*this);
 }
 

@@ -2,25 +2,22 @@
 
 ClapTrap::ClapTrap()
 {
-    std::cout << "Default Constructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "Default Constructor called" << std::endl;
     _name = "John";
-    _hp = 10;
-    _energy = 10;
-    _damage = 0;
 }
 
 ClapTrap::ClapTrap(std::string name)
 {
-    std::cout << "Assignmemt Constructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "Assignmemt Constructor called" << std::endl;
     _name = name;
-    _hp = 10;
-    _energy = 10;
-    _damage = 0;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &c)
 {
-    std::cout << "Copy Constructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "Copy Constructor called" << std::endl;
     *this = c;
 }
 
@@ -28,7 +25,8 @@ ClapTrap::ClapTrap(const ClapTrap &c)
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "Destructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "Destructor of " << _name << " called" << std::endl;
 }
 
 
@@ -43,23 +41,31 @@ ClapTrap    &ClapTrap::operator=(const ClapTrap &c)
 }
 
 
-
 bool    ClapTrap::canDoAction(void)
 {
     return (_energy > 0 && _hp > 0);
+}
+
+void    ClapTrap::couldntMakeAction(void)
+{
+    std::cout << _name \
+    << " couldn't make this action because " \
+    << (_hp > 0 ? "he has no energy" : "he's dead") \
+    << std::endl;
+
+    return ;
 }
 
 void    ClapTrap::attack(const std::string& target)
 {
     if (!this->canDoAction())
     {
-        std::cout << "ClapTrap " << _name \
-        << " couldn't make this action" << std::endl;
+        this->couldntMakeAction();
         return ;
     }
     
     _energy--;
-    std::cout << "ClapTrap " << _name << " attacks " \
+    std::cout << _name << " attacks " \
     << target << ", causing " << _damage \
     << " points of damage!" << std::endl;
 }
@@ -68,13 +74,12 @@ void    ClapTrap::takeDamage(unsigned int amount)
 {
     if (!this->canDoAction())
     {
-        std::cout << "ClapTrap " << _name \
-        << " couldn't make this action" << std::endl;
+        this->couldntMakeAction();
         return ;
     }
 
     _hp -= amount;
-    std::cout << "Claptrap " << _name << " received " \
+    std::cout << _name << " received " \
     << amount << " points of damage!" << std::endl;
 }
 
@@ -82,14 +87,13 @@ void    ClapTrap::beRepaired(unsigned int amount)
 {
     if (!this->canDoAction())
     {
-        std::cout << "ClapTrap " << _name \
-        << " couldn't make this action" << std::endl;
+        this->couldntMakeAction();
         return ;
     }
 
     _energy--;
     _hp += amount;
-    std::cout << "Claptrap " << _name << " healed " \
+    std::cout << _name << " healed " \
     << amount << " of health points" << std::endl;
 }
 

@@ -2,27 +2,34 @@
 
 Cat::Cat()
 {
-    _type = "Cat";
+    if (DEBUG)
+        std::cout << "Default Cat constructor called" << std::endl;
     _brain = new Brain();
-    std::cout << "Default Cat constructor called" << std::endl;
+    _type = "Cat";
 }
 
 Cat::Cat(const Cat &c)
 {
-    *this = c;
-    std::cout << "Copy Cat constructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "Copy Cat constructor called" << std::endl;
+    _brain = new Brain(*c._brain);
+    _type = c._type;
 }
 
 Cat::~Cat()
 {
+    if (DEBUG)
+        std::cout << "Cat destructor called" << std::endl;
     delete _brain;
-    std::cout << "Cat destructor called" << std::endl;
 }
 
 Cat &Cat::operator=(const Cat &c)
 {
-    _brain = new Brain();
-    *(_brain) = *(c._brain);
+    if (this == &c)
+        return (*this);
+    if (_brain != nullptr)
+        delete _brain;
+    _brain = new Brain(*c._brain);
     _type = c._type;
     return (*this);
 }

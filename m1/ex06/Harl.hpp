@@ -7,8 +7,7 @@
 class Harl
 {
 public:
-    Harl(std::string);
-    void    complain();
+    void    complain(std::string);
 
 private:
     void    debug(void);

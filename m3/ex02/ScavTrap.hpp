@@ -12,6 +12,7 @@ public:
     ~ScavTrap();
     
     void    attack(std::string name);
+    void    guardGate(void);
 };
 
 #endif

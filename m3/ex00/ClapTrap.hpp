@@ -1,8 +1,10 @@
 #ifndef CLAPTRAP
-#define CLAPTRAP
+# define CLAPTRAP
 
-#include <iostream>
-#include <string>
+# define DEBUG 1
+
+# include <iostream>
+# include <string>
 
 class ClapTrap
 {
@@ -20,15 +22,16 @@ public:
 
     // MEMBER FUNCTIONS
     bool    canDoAction(void);
+    void    couldntMakeAction(void);
     void    attack(const std::string& target);
     void    takeDamage(unsigned int amount);
     void    beRepaired(unsigned int amount);
 
 private:
     std::string _name;
-    int         _hp;
-    int         _energy;
-    int         _damage;
+    int         _hp = 10;
+    int         _energy = 10;
+    int         _damage = 0;
 
 };
 

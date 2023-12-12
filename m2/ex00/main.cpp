@@ -3,11 +3,15 @@
 int main(void) 
 {
     Fixed a;
+    a.setRawBits(42);
+
     Fixed b(a);
     Fixed c;
 
     c = b;
 
+    std::cout << a.getRawBits() << std::endl;
+    a.setRawBits(420);
     std::cout << a.getRawBits() << std::endl;
     std::cout << b.getRawBits() << std::endl;
     std::cout << c.getRawBits() << std::endl;

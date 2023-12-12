@@ -2,21 +2,28 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
+
+#define N 10
+
 int main()
 {
-    const Animal* animal = new Animal();
-    const Animal* dog = new Dog();
-    const Animal* cat = new Cat();
+    size_t  i;
+    Animal  *animals[N];
 
-    std::cout << dog->getType() << " " << std::endl;
-    std::cout << cat->getType() << " " << std::endl;
-    cat->makeSound();
-    dog->makeSound();
-    animal->makeSound();
+    for (i = 0; i < N; i++)
+    {
+        if (i % 2)
+            animals[i] = new Cat();
+        else
+            animals[i] = new Dog();
+    }
 
-    delete animal;
-    delete dog;
-    delete cat;
+    for (i = 0; i < N; i++)
+    {
+        delete animals[i];
+    }
 
-return 0;
+    return (0);
 }

@@ -10,7 +10,6 @@ int main()
     c.beRepaired(5);
     c.takeDamage(100);
     c.beRepaired(5);
-    c.attack("Vincent");
 
     ScavTrap    def;
 

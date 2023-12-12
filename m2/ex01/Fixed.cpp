@@ -3,25 +3,29 @@
 // CONSTRUCTOR
 Fixed::Fixed()
 {
-    std::cout << "Default constructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "Default constructor called" << std::endl;
     _rawBits = 0;
 }
 
-Fixed::Fixed(int const n)
+Fixed::Fixed(const int n)
 {
-    std::cout << "Int constructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "Int constructor called" << std::endl;
     _rawBits = n << _bits;
 }
 
-Fixed::Fixed(float const f)
+Fixed::Fixed(const float f)
 {
-    std::cout << "Float constructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "Float constructor called" << std::endl;
     _rawBits = roundf(f * (1 << _bits));
 }
 
 Fixed::Fixed(const Fixed &f)
 {
-    std::cout << "Copy constructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "Copy constructor called" << std::endl;
     *this = f;
 }
 
@@ -30,7 +34,8 @@ Fixed::Fixed(const Fixed &f)
 // DESTRUCTOR
 Fixed::~Fixed()
 {
-    std::cout << "Destructor called" << std::endl;
+    if (DEBUG)
+        std::cout << "Destructor called" << std::endl;
 }
 
 
@@ -38,8 +43,9 @@ Fixed::~Fixed()
 // OPERATORS
 Fixed   &Fixed::operator=(const Fixed &f)
 {
-    std::cout << "Copy assignment operator called" << std::endl;
-    _rawBits = f._rawBits;
+    if (DEBUG)
+        std::cout << "Copy assignment operator called" << std::endl;
+    _rawBits = f.getRawBits();
     return (*this);
 }
 
@@ -54,11 +60,10 @@ std::ostream    &operator<<(std::ostream& os, const Fixed &f)
 // MEMBER FUNCTION
 int     Fixed::getRawBits() const
 {
-    std::cout << "getRawBits member function called" << std::endl;
     return (_rawBits);
 }
 
-void    Fixed::setRawBits(int const raw)
+void    Fixed::setRawBits(const int raw)
 {
     _rawBits = raw;
 }
