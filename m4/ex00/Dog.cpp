@@ -11,7 +11,7 @@ Dog::Dog(const Dog &d)
 {
     if (DEBUG)
         std::cout << "Copy Dog constructor called" << std::endl;
-    _type = d._type;
+    *this = d;
 }
 
 Dog::~Dog()
@@ -22,6 +22,8 @@ Dog::~Dog()
 
 Dog  &Dog::operator=(const Dog &d)
 {
+    if (this == &d)
+        return (*this);
     _type = d._type;
     return (*this);
 }

@@ -9,11 +9,11 @@ Cat::Cat()
 }
 
 Cat::Cat(const Cat &c)
+    : _brain(nullptr)
 {
     if (DEBUG)
         std::cout << "Copy Cat constructor called" << std::endl;
-    _brain = new Brain(*c._brain);
-    _type = c._type;
+    *this = c;
 }
 
 Cat::~Cat()

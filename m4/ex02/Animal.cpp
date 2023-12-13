@@ -11,7 +11,7 @@ Animal::Animal(const Animal &a)
 {
     if (DEBUG)
         std::cout << "Copy Animal constructor called" << std::endl;
-    _type = a._type;
+    *this = a;
 }
 
 Animal::~Animal()
@@ -22,7 +22,8 @@ Animal::~Animal()
 
 Animal  &Animal::operator=(const Animal &a)
 {
-    std::cout << "Ok" << std::endl;
+    if (this == &a)
+        return (*this);
     _type = a._type;
     return (*this);
 }

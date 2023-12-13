@@ -11,7 +11,7 @@ Cat::Cat(const Cat &c)
 {
     if (DEBUG)
         std::cout << "Copy Cat constructor called" << std::endl;
-    _type = c._type;
+    *this = c;
 }
 
 Cat::~Cat()
@@ -22,6 +22,8 @@ Cat::~Cat()
 
 Cat &Cat::operator=(const Cat &c)
 {
+    if (this == &c)
+        return (*this);
     _type = c._type;
     return (*this);
 }

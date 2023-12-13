@@ -11,7 +11,7 @@ WrongCat::WrongCat(const WrongCat &c)
 {
     if (DEBUG)
         std::cout << "Copy WrongCat constructor called" << std::endl;
-    _type = c._type;
+    *this = c;
 }
 
 WrongCat::~WrongCat()
@@ -22,6 +22,8 @@ WrongCat::~WrongCat()
 
 WrongCat &WrongCat::operator=(const WrongCat &a)
 {
+    if (this == &a)
+        return (*this);
     _type = a._type;
     return (*this);
 }

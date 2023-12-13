@@ -6,9 +6,7 @@ Character::Character()
 
     _name = "Unknown";
     for (i = 0; i < _slots; i++)
-    {
         _inventory[i] = nullptr;
-    }
 }
 
 Character::Character(const std::string name)
@@ -17,9 +15,7 @@ Character::Character(const std::string name)
 
     _name = name;
     for (i = 0; i < _slots; i++)
-    {
         _inventory[i] = nullptr;
-    }
 }
 
 Character::Character(const Character &c)
@@ -51,11 +47,14 @@ Character   &Character::operator=(const Character &c)
 {
     size_t  i;
 
+    if (this == &c)
+        return (*this);
     _name = c._name;
     for (i = 0; i < _slots; i++)
     {
         if (_inventory[i] != nullptr)
             delete _inventory[i];
+        _inventory[i] = nullptr;
         if (c._inventory[i] != nullptr)
             _inventory[i] = c._inventory[i]->clone();
     }

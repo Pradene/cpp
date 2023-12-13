@@ -11,11 +11,6 @@ int main()
     const Animal *dog = new Dog();
     const Cat *cat = new Cat();
     const Cat *c = new Cat();
-    
-    Cat c1;
-    Cat c2;
-
-    c1 = c2;
 
     std::cout << &cat->getBrain() << std::endl;
     std::cout << &c->getBrain() << std::endl;

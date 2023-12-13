@@ -10,18 +10,15 @@ Brain::Brain(const Brain &b)
 {
     if (DEBUG)
         std::cout << "Brain Copy Constructor called" << std::endl;
-    for (size_t i = 0; i < 100; i++)
-    {
-        _ideas[i] = b._ideas[i];
-    }
+    *this = b;
 }
 
 Brain   &Brain::operator=(const Brain &b)
 {
+    if (this == &b)
+        return (*this);
     for (size_t i = 0; i < 100; i++)
-    {
         _ideas[i] = b._ideas[i];
-    }
     return (*this);
 }
 

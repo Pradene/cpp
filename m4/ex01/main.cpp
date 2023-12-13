@@ -12,6 +12,10 @@ int main()
     size_t  i;
     Animal  *animals[N];
 
+    Cat c2;
+
+    Cat c1 = c2;
+
     for (i = 0; i < N; i++)
     {
         if (i % 2)

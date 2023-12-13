@@ -5,9 +5,7 @@ MateriaSource::MateriaSource()
     size_t  i;
 
     for (i = 0; i < _slots; i++)
-    {
         _book[i] = nullptr;
-    }
 }
 
 MateriaSource::MateriaSource(const MateriaSource &materia)
@@ -38,8 +36,12 @@ MateriaSource   &MateriaSource::operator=(const MateriaSource &materia)
 {
     size_t  i;
 
+    if (this == &materia)
+        return (*this);
     for (i = 0; i < _slots; i++)
     {
+        if (_book[i] != nullptr)
+            delete _book[i];
         _book[i] = nullptr;
         if (materia._book[i] != nullptr)
             _book[i] = materia._book[i]->clone();

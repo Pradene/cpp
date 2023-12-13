@@ -17,6 +17,8 @@ Cure::~Cure()
 
 Cure    &Cure::operator=(const Cure &c)
 {
+    if (this == &c)
+        return (*this);
     _type = c._type;
     return (*this);
 }

@@ -9,11 +9,11 @@ Dog::Dog()
 }
 
 Dog::Dog(const Dog &d)
+    : _brain(nullptr)
 {
     if (DEBUG)
         std::cout << "Copy Dog constructor called" << std::endl;
-    _brain = new Brain(*d._brain);
-    _type = d._type;
+    *this = d;
 }
 
 Dog::~Dog()

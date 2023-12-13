@@ -29,6 +29,8 @@ AMateria::~AMateria()
 
 AMateria  &AMateria::operator=(const AMateria &a)
 {
+    if (this == &a)
+        return (*this);
     _type = a._type;
     return (*this);
 }

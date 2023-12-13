@@ -17,6 +17,8 @@ Ice::~Ice()
 
 Ice    &Ice::operator=(const Ice &i)
 {
+    if (this == &i)
+        return (*this);
     _type = i._type;
     return (*this);
 }
