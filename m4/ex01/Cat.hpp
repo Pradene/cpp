@@ -14,6 +14,7 @@ public:
     Cat &operator=(const Cat &c);
 
     virtual void    makeSound() const;
+    Brain           &getBrain() const;
 
 private:
     Brain   *_brain;

@@ -25,6 +25,7 @@ Cat::~Cat()
 
 Cat &Cat::operator=(const Cat &c)
 {
+    std::cout << "Copy Cat assignement operator" << std::endl;
     if (this == &c)
         return (*this);
     if (_brain != nullptr)
@@ -37,4 +38,9 @@ Cat &Cat::operator=(const Cat &c)
 void    Cat::makeSound() const
 {
     std::cout << "Miaouuu..." << std::endl;
+}
+
+Brain   &Cat::getBrain() const
+{
+    return (*_brain);
 }

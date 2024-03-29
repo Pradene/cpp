@@ -4,7 +4,7 @@ OBJS		= $(SRCS:.cpp=.o)
 
 COMPILER	= c++
 
-CFLAGS		= -std=c++98 -Wall -Wextra -Werror -g
+CFLAGS		= -std=c++98 -Wall -Wextra -Werror
 
 NAME		= megaphone
 

@@ -25,15 +25,14 @@ int main(void)
     
     tmp = src->createMateria("cure");
     you->equip(tmp);
+    you->use(0, *me);
     you->unequip(0);
+    you->use(0, *me);
 
     ICharacter* bob = new Character("bob");
     
     me->use(0, *bob);
     me->use(1, *bob);
-    
-    you->use(0, *me);
-    you->use(-1, *me);
     
     delete tmp;
     delete bob;

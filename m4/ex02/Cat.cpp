@@ -41,6 +41,5 @@ void    Cat::makeSound() const
 
 Brain   &Cat::getBrain() const
 {
-    std::cout << this << std::endl;
     return (*_brain);
 }
