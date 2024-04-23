@@ -114,18 +114,18 @@ bool    Data::checkDate(const std::string &date) {
     int month;
     int day;
 
-    if ( date.size() != 10 \
+    if ( date.length() != 10 \
     || !std::isdigit(date[0]) || !std::isdigit(date[1]) \
     || !std::isdigit(date[2]) || !std::isdigit(date[3]) \
     || date[4] != '-' \
     || !std::isdigit(date[5]) || !std::isdigit(date[6]) \
     || date[7] != '-' \
     || !std::isdigit(date[8]) || !std::isdigit(date[9]))
-        return (1);
+        return (0);
     
     year = to_int(date.substr(0, 4));
     month = to_int(date.substr(5, 7));
-    day = to_int(date.substr(8, date.size()));
+    day = to_int(date.substr(8, date.length()));
 
     return (isValidDate(year, month, day));
 }

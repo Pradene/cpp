@@ -16,22 +16,19 @@ class Data {
 
 public:
     Data(const std::string &fileName);
-    Data(const Data &rhs);
-    Data    &operator=(const Data &rhs);
     ~Data();
 
-    void    exchangeRates(const std::string &file);
-
-    
+    void    exchangeRates(const std::string &file);    
 
 private:
     Data();
+    Data(const Data &rhs);
+    Data    &operator=(const Data &rhs);
 
     bool    getKeyValue(const std::string &line, std::string &key, float &value, char sep);
 
     void    parseFile(const std::string &fileName);
     bool    checkDate(const std::string &date);
-    // bool    checkFloat(const float &f);
     
     std::map<std::string, float>    _rates;
 };

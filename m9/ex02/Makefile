@@ -1,8 +1,7 @@
 SRCSDIR		= srcs
 OBJSDIR		= objs
 
-FILES		= main.cpp \
-			PMerge.cpp
+FILES		= main.cpp
 
 OBJS		= $(addprefix $(OBJSDIR)/, $(FILES:.cpp=.o))
 SRCS		= $(addprefix $(SRCSDIR)/, $(FILES))
