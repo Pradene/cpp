@@ -31,14 +31,38 @@ void    sortPairs(std::vector<int> &vec) {
     }
 }
 
-// NEED TO OPTIMIZE
-void    sortEachPairs(std::vector<int> &vec) {
-    for (std::vector<int>::iterator first = vec.begin(); first + 2 != vec.end(); first += 2) {
-        for (std::vector<int>::iterator last = first + 2; last != vec.end(); last += 2) {
-            if (*(first) > *(last))
-                std::swap_ranges(first, first + 2, last);
+void    merge(
+    std::vector<int>::iterator first,
+    std::vector<int>::iterator mid,
+    std::vector<int>::iterator last) {
+
+    while (mid != last) {
+        if (*(first) > *(mid)) {
+            std::swap_ranges(first, first + 2, mid);
+            std::advance(first, 2);
+        
+        } else {
+            std::advance(mid, 2);
         }
     }
+}
+
+void    mergeSort(std::vector<int> &vec,
+    std::vector<int>::iterator first,
+    std::vector<int>::iterator last) {
+
+    int dist = std::distance(first, last);
+    if (dist <= 2) return ;
+
+    std::vector<int>::iterator  it = first;
+    int mv = dist / 2;
+    if (mv % 2) ++mv;
+    std::advance(it, mv);
+    
+    mergeSort(vec, first, it);
+    mergeSort(vec, it, last);
+
+    merge(first, it, last);
 }
 
 void    sortVector(std::vector<int> &vec) {
@@ -53,7 +77,7 @@ void    sortVector(std::vector<int> &vec) {
     }
 }
 
-void    PMerge(std::vector<int> &vec) {
+void    fordJohnson(std::vector<int> &vec) {
     int odd = 0;
 
     if (vec.size() % 2) {
@@ -62,7 +86,7 @@ void    PMerge(std::vector<int> &vec) {
     }
 
     sortPairs(vec);
-    sortEachPairs(vec);
+    mergeSort(vec, vec.begin(), vec.end());
     sortVector(vec);
 
     if (odd != 0) {
@@ -91,7 +115,7 @@ int main(int ac, const char **av) {
         struct timeval  end;
 
         gettimeofday(&start, NULL);
-        PMerge(vec);
+        fordJohnson(vec);
         gettimeofday(&end, NULL);
 
         printVec(vec);
