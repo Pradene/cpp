@@ -7,8 +7,8 @@
 #include <ctime>
 #include <sys/time.h>
 
-void    printVec(std::vector<int> &vec) {
-    for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); ++it)
+void    printVec(std::vector<size_t> &vec) {
+    for (std::vector<size_t>::iterator it = vec.begin(); it != vec.end(); ++it)
         std::cout << *(it) << " ";
     std::cout << "\n";
 }
@@ -24,60 +24,124 @@ int stringToInt(std::string arg) {
     return (num);
 }
 
-void    sortPairs(std::vector<int> &vec) {
-    for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it += 2) {
+std::vector<size_t> pairsSort(std::vector<size_t> &vec) {
+    for (std::vector<size_t>::iterator it = vec.begin(); it != vec.end(); it += 2) {
         if (*(it) < *(it + 1))
             std::swap(*(it), *(it + 1));
     }
+
+    return (vec);
 }
 
-void    merge(
-    std::vector<int>::iterator first,
-    std::vector<int>::iterator mid,
-    std::vector<int>::iterator last) {
+std::vector<size_t> merge(std::vector<size_t> &v1, std::vector<size_t> &v2) {
 
-    while (mid != last) {
-        if (*(first) > *(mid)) {
-            std::swap_ranges(first, first + 2, mid);
-            std::advance(first, 2);
-        
+    std::vector<size_t> v;
+    size_t  i = 0;
+    size_t  k = 0;
+
+    while (i < v1.size() && k < v2.size()) {
+        if (v1[i] < v2[k]) {
+            v.push_back(v1[i++]);
+            v.push_back(v1[i++]);
+
         } else {
-            std::advance(mid, 2);
+            v.push_back(v2[k++]);
+            v.push_back(v2[k++]);
         }
     }
+
+    while (i < v1.size())
+        v.push_back(v1[i++]);
+
+    while (k < v2.size())
+        v.push_back(v2[k++]);
+
+    return (v);
 }
 
-void    mergeSort(std::vector<int> &vec,
-    std::vector<int>::iterator first,
-    std::vector<int>::iterator last) {
+std::vector<size_t> mergeSort(std::vector<size_t> &vec) {
 
-    int dist = std::distance(first, last);
-    if (dist <= 2) return ;
+    if (vec.size() <= 2) return (vec);
 
-    std::vector<int>::iterator  it = first;
-    int mv = dist / 2;
-    if (mv % 2) ++mv;
-    std::advance(it, mv);
-    
-    mergeSort(vec, first, it);
-    mergeSort(vec, it, last);
+    int mid = vec.size() / 2;
+    if (mid % 2) ++mid;
 
-    merge(first, it, last);
+    std::vector<size_t>::iterator   it = vec.begin();
+    std::advance(it, mid);
+
+    std::vector<size_t> v1(vec.begin(), it);
+    std::vector<size_t> v2(it, vec.end());
+
+    v1 = mergeSort(v1);
+    v2 = mergeSort(v2);
+
+    return (merge(v1, v2));
 }
 
-void    sortVector(std::vector<int> &vec) {
-    std::vector<int>::iterator  it = vec.begin();
-    std::vector<int>::iterator  end;
+size_t  jacobstahl(size_t index) {
+    size_t  jacob = 0;
 
-    for (size_t i = 1; i < vec.size(); i += 2) {
-        end = vec.begin() + i;
-        it = std::lower_bound(vec.begin(), end - 1, *(end));
-        vec.insert(it, *(end));
-        vec.erase(++end);
+    size_t  v1 = 0;
+    size_t  v2 = 1;
+    for (size_t i = 0; i < index; ++i) {
+        jacob = v1 * 2 + v2;
+        
+        v1 = v2;
+        v2 = jacob;
     }
+
+    return (jacob);
 }
 
-void    fordJohnson(std::vector<int> &vec) {
+std::vector<size_t> insertionSort(std::vector<size_t> &vec) {
+    std::vector<size_t>::iterator  insertPos;
+    std::vector<size_t>::iterator  end = vec.begin();
+    size_t  jacob = 0;
+    size_t  value = 0;
+    size_t  index = 0;
+
+    std::swap(*(vec.begin()), *(vec.begin() + 1));
+
+    for (size_t i = 0; 1; ++i) {
+        jacob = jacobstahl(i);
+        if (jacob > vec.size() / 2) break ;
+
+        index = 2 * (jacob + 1);
+        end = vec.begin();
+        std::advance(end, index);
+
+        for (size_t k = jacobstahl(i + 1), it = 2 * k + 1; \
+            k < vec.size() / 2 && k > jacob; \
+            --k, --it) {
+
+            value = vec[it];
+            insertPos = std::upper_bound(vec.begin(), end, value);
+            vec.erase(vec.begin() + it);
+            vec.insert(insertPos, value);
+            
+            end = vec.begin();
+            std::advance(end, ++index);
+        }
+    }
+
+    index = std::distance(vec.begin(), end);
+    for (size_t it = index + 1; it < vec.size(); ++it) {
+        value = vec[it];
+        insertPos = std::upper_bound(vec.begin(), end, value);
+
+        vec.erase(vec.begin() + it);
+        vec.insert(insertPos, value);
+
+        end = vec.begin();
+        std::advance(end, ++index);
+
+        it += 1;
+    }
+
+    return (vec);
+}
+
+void    fordJohnson(std::vector<size_t> &vec) {
     int odd = 0;
 
     if (vec.size() % 2) {
@@ -85,12 +149,12 @@ void    fordJohnson(std::vector<int> &vec) {
         vec.pop_back();
     }
 
-    sortPairs(vec);
-    mergeSort(vec, vec.begin(), vec.end());
-    sortVector(vec);
+    vec = pairsSort(vec);
+    vec = mergeSort(vec);
+    vec = insertionSort(vec);
 
     if (odd != 0) {
-        std::vector<int>::iterator  it;
+        std::vector<size_t>::iterator  it;
         it = std::lower_bound(vec.begin(), vec.end(), odd);
         vec.insert(it, odd);
     }
@@ -101,7 +165,7 @@ int main(int ac, const char **av) {
         if (ac < 3)
             throw std::runtime_error("./PMerge [numbers...]");
 
-        std::vector<int>    vec;
+        std::vector<size_t>    vec;
         int n = 0;
 
         for (size_t i = 1; av[i] != NULL; ++i) {
