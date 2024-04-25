@@ -78,64 +78,21 @@ std::vector<size_t> mergeSort(std::vector<size_t> &vec) {
     return (merge(v1, v2));
 }
 
-size_t  jacobstahl(size_t index) {
-    size_t  jacob = 0;
-
-    size_t  v1 = 0;
-    size_t  v2 = 1;
-    for (size_t i = 0; i < index; ++i) {
-        jacob = v1 * 2 + v2;
-        
-        v1 = v2;
-        v2 = jacob;
-    }
-
-    return (jacob);
-}
-
 std::vector<size_t> insertionSort(std::vector<size_t> &vec) {
     std::vector<size_t>::iterator  insertPos;
     std::vector<size_t>::iterator  end = vec.begin();
-    size_t  jacob = 0;
     size_t  value = 0;
     size_t  index = 0;
 
-    std::swap(*(vec.begin()), *(vec.begin() + 1));
-
-    for (size_t i = 0; 1; ++i) {
-        jacob = jacobstahl(i);
-        if (jacob > vec.size() / 2) break ;
-
-        index = 2 * (jacob + 1);
-        end = vec.begin();
-        std::advance(end, index);
-
-        for (size_t k = jacobstahl(i + 1), it = 2 * k + 1; \
-            k < vec.size() / 2 && k > jacob; \
-            --k, --it) {
-
-            value = vec[it];
-            insertPos = std::upper_bound(vec.begin(), end, value);
-            vec.erase(vec.begin() + it);
-            vec.insert(insertPos, value);
-            
-            end = vec.begin();
-            std::advance(end, ++index);
-        }
-    }
-
-    index = std::distance(vec.begin(), end);
-    for (size_t it = index + 1; it < vec.size(); ++it) {
+    for (size_t it = 1; it < vec.size(); it += 2) {
         value = vec[it];
-        insertPos = std::upper_bound(vec.begin(), end, value);
+        insertPos = std::upper_bound(vec.begin(), vec.begin() + it - 1, value);
 
         vec.erase(vec.begin() + it);
         vec.insert(insertPos, value);
 
         end = vec.begin();
         std::advance(end, ++index);
-
-        it += 1;
     }
 
     return (vec);
